@@ -38,6 +38,13 @@ v2 = ((pow(g, u12, p)*pow(y, u22, p)) % p) % q
 
 calculated_k = ((int(hashlib.sha1(m1).hexdigest(), base=16) - int(hashlib.sha1(m2).hexdigest(), base=16)) * pow(s1-s2, -1, q)) % q
 
-print("The k the observer calculated: " + str(calculated_k))
+print("The value of k that the observer calculated: " + str(calculated_k))
 print("The actual value of k: " + str(k))
 print("The two values of k are the same: " + str(calculated_k==k))
+
+# now observer finds x
+calculated_x = ((calculated_k * s1 - int(hashlib.sha1(m1).hexdigest(), base=16)) * pow(r, -1, q)) % q
+
+print("The value of x that the observer calculated: " + str(calculated_x))
+print("The actual value of x: " + str(x))
+print("The two values of x are the same: " + str(calculated_x==x))
